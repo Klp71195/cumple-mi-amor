@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cumple de mi reina ✨</title>
 <style>
+  /* ---------------------- */
+  /* Estilos generales */
+  /* ---------------------- */
   body {
     margin: 0;
     height: 100vh;
@@ -17,24 +20,25 @@
     flex-direction: column;
     color: white;
     text-align: center;
+    padding: 0 10px;
   }
 
   h1 {
-    font-size: 3em;
+    font-size: clamp(2rem, 5vw, 3em);
     margin: 0;
     text-shadow: 0 0 20px #ff8c42, 0 0 40px #ff6a00;
     animation: glow 2s infinite alternate;
   }
 
   h2 {
-    font-size: 1.8em;
+    font-size: clamp(1.2rem, 4vw, 1.8em);
     margin: 10px 0 20px;
     text-shadow: 0 0 10px #ffa366;
     animation: fadeInUp 2s ease forwards;
   }
 
   #countdown {
-    font-size: 2em;
+    font-size: clamp(1rem, 3vw, 2em);
     margin-top: 15px;
     color: #ffcc99;
     text-shadow: 0 0 10px #ff8c42;
@@ -56,6 +60,9 @@
     to { transform: scale(1.1); opacity: 1; }
   }
 
+  /* ---------------------- */
+  /* Canvas */
+  /* ---------------------- */
   canvas {
     position: absolute;
     top: 0; left: 0;
@@ -63,13 +70,15 @@
     z-index: -1;
   }
 
+  /* ---------------------- */
   /* Botón sorpresa */
+  /* ---------------------- */
   .btn-surprise {
     margin-top: 30px;
-    padding: 12px 24px;
+    padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 24px);
     background: #ff6600;
     color: white;
-    font-size: 1.2em;
+    font-size: clamp(1rem, 3vw, 1.2em);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -80,21 +89,23 @@
     transform: scale(1.1);
   }
 
+  /* ---------------------- */
   /* Carta romántica */
+  /* ---------------------- */
   .letter {
     position: fixed;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    width: 80%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 400px;
     background: #fff5e6;
     color: #333;
-    padding: 30px;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255,140,66,0.8), 0 0 40px rgba(255,100,0,0.6);
     text-align: left;
-    font-size: 1.2em;
-    line-height: 1.6em;
+    font-size: clamp(0.9rem, 3vw, 1.2em);
+    line-height: 1.4em;
     opacity: 0;
     transition: all 1s ease;
     z-index: 100;
@@ -113,6 +124,15 @@
     cursor: pointer;
     color: #ff6600;
   }
+
+  /* ---------------------- */
+  /* Ajustes para móviles muy pequeños */
+  /* ---------------------- */
+  @media (max-width: 400px) {
+    body { padding: 10px; }
+    .letter { padding: 15px; font-size: 0.9rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -128,16 +148,12 @@
   <p>
     Cada día contigo es un regalo del universo.  
     Faltan solo 7 días para tu cumpleaños, pero en realidad, cada día contigo ya es una celebración.  
-    <p>Mi amor, tu cumple ya casi llega y estoy tan nerviosa... quiero que todo salga bien y que ames tu cumpleaños tanto o más que yo 💖</p>
-    <p>No sé cómo decirte todo lo que eres para mí y lo feliz que me hace tenerte en mi vida. Cada cosa contigo me hace sentir viva, y no existe día que no agradezca a Dios por tenerte.</p>
-    <p>Gracias por dejarme estar contigo, por haber aceptado aquella primera vez que te llevé a casa. Gracias por dejarme ser realmente yo contigo.</p>
-    <p>Yo te quiero, mi amor, más que todo en el mundo. Deseo que nunca exista un día en el que no te sientas como la mujer más hermosa de este mundo y la reina de mi corazón. 👑❤️</p>
-
-  
-  <p>
-    Gracias por existir y por dejarme ser parte de tu vida.  
-    Te quiero para siempre, para toda una eternidad y un día mas...✨
   </p>
+  <p>Mi amor, tu cumple ya casi llega y estoy tan nerviosa... quiero que todo salga bien y que ames tu cumpleaños tanto o más que yo 💖</p>
+  <p>No sé cómo decirte todo lo que eres para mí y lo feliz que me hace tenerte en mi vida. Cada cosa contigo me hace sentir viva, y no existe día que no agradezca a Dios por tenerte.</p>
+  <p>Gracias por dejarme estar contigo, por haber aceptado aquella primera vez que te llevé a casa. Gracias por dejarme ser realmente yo contigo.</p>
+  <p>Yo te quiero, mi amor, más que todo en el mundo. Deseo que nunca exista un día en el que no te sientas como la mujer más hermosa de este mundo y la reina de mi corazón. 👑❤️</p>
+  <p>Gracias por existir y por dejarme ser parte de tu vida. Te quiero para siempre, para toda una eternidad y un día más...✨</p>
   <span class="close" onclick="closeLetter()">Cerrar 💖</span>
 </div>
 
@@ -154,12 +170,10 @@
   function updateCountdown(){
     const now = new Date();
     const diff = targetDate - now;
-
     const days = Math.floor(diff / (1000*60*60*24));
     const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
     const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
     const seconds = Math.floor((diff % (1000*60)) / 1000);
-
     countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s ✨`;
   }
 
