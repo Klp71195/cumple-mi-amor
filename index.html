@@ -90,14 +90,17 @@
   }
 
   /* ---------------------- */
-  /* Carta romántica */
+  /* Carta romántica responsive con scroll */
   /* ---------------------- */
   .letter {
     position: fixed;
-    top: 50%; left: 50%;
+    top: 50%; 
+    left: 50%;
     transform: translate(-50%, -50%) scale(0);
     width: 90%;
     max-width: 400px;
+    max-height: 80%;        /* Limita altura de la carta */
+    overflow-y: auto;       /* Scroll si contenido excede */
     background: #fff5e6;
     color: #333;
     padding: 20px;
@@ -130,7 +133,7 @@
   /* ---------------------- */
   @media (max-width: 400px) {
     body { padding: 10px; }
-    .letter { padding: 15px; font-size: 0.9rem; }
+    .letter { padding: 15px; font-size: 0.9rem; max-height: 85%; }
   }
 
 </style>
